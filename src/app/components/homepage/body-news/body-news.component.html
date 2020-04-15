@@ -1,0 +1,24 @@
+<div class="container-body row">
+  <div class="float-left col-12">
+
+    <div class="box col-sm-12 col-md-6" *ngFor="let h of listHouse">
+      <div class="card">
+        <div class="imgBx">
+          <img [src]="h.picture[0].tenAnh" alt="images">
+        </div>
+        <div class="details">
+          <h2>{{h.tenNha}}<br><span>{{h.giaTienTheoDem}}$/Đêm</span><br><button class="detail-butoon" routerLink="views/{{h.idNha}}">Chi tiết</button>
+            <button class="detail-butoon">Thuê Nhà  </button>
+          </h2>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
