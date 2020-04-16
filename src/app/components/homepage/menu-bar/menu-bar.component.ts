@@ -10,18 +10,20 @@ import {Router} from '@angular/router';
 })
 export class MenuBarComponent implements OnInit {
 
+  checkLogin: any;
+  abc: any;
   listHouse: any[];
-  checkLogin = true;
   listCustomer: any[];
-  customerId: any;
+  listCheck: any;
   customerName: any;
   check = false;
   message = '';
   isShow = false;
   isSuccess = true;
+  formGroupCheck = new FormGroup( {
+    check: new FormControl()
+  })
   formGroup = new FormGroup({
-    userName: new FormControl(),
-    password: new FormControl(),
     search: new FormControl(),
     input: new FormControl(),
     output: new FormControl()
@@ -32,6 +34,31 @@ export class MenuBarComponent implements OnInit {
     this.componentsService.getListCustomer().subscribe(result => {
       this.listCustomer = result;
     });
+    this.checkLogin = localStorage.getItem('check');
+    console.log(this.checkLogin);
+    if (this.checkLogin === 'true' || this.checkLogin == null) {
+      this.abc = true;
+    } else {
+      this.abc = false;
+    }
+    this.customerName = localStorage.getItem('customerName');
+    console.log(this.customerName);
+    this.componentsService.findByIdCheck(1).subscribe( result => {
+      this.listCheck = result;
+      this.formGroupCheck.controls.check.setValue(!this.listCheck.checkLogin);
+    });
+  }
+  exit() {
+    this.updateCheck();
+  }
+  updateCheck() {
+    const id = 1;
+    const check = this.formGroupCheck.get('check').value;
+    this.componentsService.updateCheck(id, check).subscribe( result => {});
+    this.checkLogin = 'true';
+    console.log(this.checkLogin);
+    localStorage.removeItem('check');
+    localStorage.removeItem('customerName');
   }
   public searchByDiaChi() {
     const diaChi = this.formGroup.get('search').value;
@@ -59,38 +86,5 @@ export class MenuBarComponent implements OnInit {
     this.componentsService.searchBetween(input, output).subscribe( result => {
       this.listHouse = result;
     });
-  }
-  login() {
-    this.checkLogin = false;
-  }
-  exit() {
-    this.checkLogin = true;
-  }
-  checkUser() {
-    const userName = this.formGroup.get('userName').value;
-    const password = this.formGroup.get('password').value;
-    for (let i = 0; i < this.listCustomer.length ; i++) {
-      if (this.listCustomer[i].userName === userName && this.listCustomer[i].password === password) {
-        this.check = true;
-        this.customerId = this.listCustomer[i].idCustomer;
-        this.customerName = this.listCustomer[i].ten;
-        console.log(this.listCustomer[i].userName);
-        console.log(this.listCustomer[i].password);
-        this.route.navigate(['//']).then( (e) => {
-          if (e) {
-            console.log('Navigation is successful!');
-          } else {
-            console.log('Navigation has failed!');
-          }
-        });
-      }
-      // else {
-      //   this.isShow = true;
-      //   this.isSuccess = false;
-      //   this.message = 'Sai tài khoản hoặc mật khẩu.';
-      //   this.isLoading = false;
-      //   this.formGroup.reset();
-      // }
-    }
   }
 }

@@ -22,18 +22,24 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login-homepage">Đăng nhập</a>
+        <a class="nav-link" *ngIf="abc" routerLink="/login-homepage">Đăng nhập</a>
+        <a class="nav-link" *ngIf="checkLogin === 'false' ? true : false" (click)="exit()" href="/">Đăng xuất</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/signup-homepage" href="#">Đăng ký</a>
+        <a class="nav-link" routerLink="/signup-homepage">Đăng ký</a>
       </li>
       <li class="nav-item">
         <a class="nav-link button" href="#"><app-login></app-login></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="checkLogin === 'false' ? true : false">{{customerName}}</a>
+      </li>
     </ul>
   </div>
 </nav>
-
+<form [formGroup]="formGroupCheck" (ngSubmit)="updateCheck()">
+  <input *ngIf="false" type="text" formControlName="check" name="password" placeholder="Password" value="{{listCheck.id}}" required>
+</form>
 <div class="container alo">
   <div class="container-bg img-bg">
     <img src="https://images.pexels.com/photos/32870/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">

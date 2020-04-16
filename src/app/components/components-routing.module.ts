@@ -17,7 +17,8 @@ import {SignUpComponent} from './user/sign-up/sign-up.component';
 import {LoginHomepageComponent} from './homepage/login-homepage/login-homepage.component';
 import {SignupHomepageComponent} from './homepage/signup-homepage/signup-homepage.component';
 
-const routes: Routes = [{ path: '', component: HomepageComponent },
+const routes: Routes = [{ path: 'home', component: HomepageComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'views/:id', component: ShowDetailsComponent},
   {path: 'user/:id', component: HomeListComponent},
   {path: 'user/house/:id', component: HouseListComponent},

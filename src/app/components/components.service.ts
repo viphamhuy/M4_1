@@ -86,5 +86,18 @@ export class ComponentsService {
   public getListCustomer(): Observable<any> {
     return this.httpClient.get('http://localhost:5000/api/customers/');
   }
+  public getCheck(): Observable<any> {
+    return this.httpClient.get('http://localhost:5000/api/checks/');
+  }
+  public findByIdCheck(id: number): Observable<any> {
+    return this.httpClient.get('http://localhost:5000/api/checks/' + id);
+  }
+  public updateCheck(id: number, checkLogin: boolean): Observable<any> {
+    const check = {
+      id,
+      checkLogin
+    };
+    return this.httpClient.put('http://localhost:5000/api/checks/' + id, check);
+  }
 }
 
