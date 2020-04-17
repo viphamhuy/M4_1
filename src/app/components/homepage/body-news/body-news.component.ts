@@ -8,7 +8,7 @@ import {ComponentsService} from '../../components.service';
 })
 export class BodyNewsComponent implements OnInit {
 
-  listHouse: any;
+  listHouse: any[];
   categoryHouseList: any[];
   categoryRoomList: any[];
   isShowForm = false;

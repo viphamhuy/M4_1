@@ -1,14 +1,14 @@
 <body>
 <div class="box">
   <form class="login-form" [formGroup]="formGroup" (ngSubmit)="checkUser()">
-    <h1>Login as Customer</h1>
-    <input type="text" formControlName="userName" name="username" placeholder="Username" required>
-    <input type="password" formControlName="password" name="password" placeholder="Password" required>
+    <h1>Đăng nhập</h1>
+    <input type="text" formControlName="userName" name="username" placeholder="Tên đăng nhập" required>
+    <input type="password" formControlName="password" name="password" placeholder="Mật khẩu" required>
     <input *ngIf="false" type="text" formControlName="check" name="password" placeholder="Password" value="{{checkLogin.id}}" required>
     <input type="submit" name="Login" value="Login">
     <div class="links">
       <a href="#">Forgot Password</a>
-      <a routerLink="/signup-homepage">Sign Up</a>
+      <a routerLink="/signup-homepage">Đăng kí</a>
     </div>
     <div *ngIf="isShow"
          class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"

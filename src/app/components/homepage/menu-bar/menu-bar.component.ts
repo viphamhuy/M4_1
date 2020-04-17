@@ -36,11 +36,6 @@ export class MenuBarComponent implements OnInit {
     });
     this.checkLogin = localStorage.getItem('check');
     console.log(this.checkLogin);
-    if (this.checkLogin === 'true' || this.checkLogin == null) {
-      this.abc = true;
-    } else {
-      this.abc = false;
-    }
     this.customerName = localStorage.getItem('customerName');
     console.log(this.customerName);
     this.componentsService.findByIdCheck(1).subscribe( result => {
